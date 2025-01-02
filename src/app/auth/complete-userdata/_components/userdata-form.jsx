@@ -21,7 +21,7 @@ import { Loader2 } from "lucide-react";
 import * as z from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { createUsername } from "@/app/auth/create-username/actions";
+import { createUsername } from "@/app/auth/complete-userdata/actions";
 import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
@@ -30,15 +30,13 @@ const formSchema = z.object({
     .min(3, { message: "Username must be at least 3 characters" }),
 });
 
-export const UsernameForm = () => {
+export const UserdataForm = () => {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      first_name: "",
-      last_name: "",
       username: "",
     },
   });

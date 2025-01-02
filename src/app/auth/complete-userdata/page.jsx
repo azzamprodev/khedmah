@@ -1,4 +1,4 @@
-import { UsernameForm } from "./_components/username-form";
+import { UserdataForm } from "./_components/userdata-form";
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 
@@ -15,7 +15,7 @@ export default async function CreateUsernamePage() {
   return (
     <div className="flex flex-grow items-center justify-center">
       <div className="container mx-auto max-w-md px-4">
-        <UsernameForm />
+        <UserdataForm />
       </div>
     </div>
   );
