@@ -20,7 +20,7 @@ import {
 } from "@/components/ui/form";
 import { Loader2 } from "lucide-react";
 import Lottie from "lottie-react";
-import animationData from "/Users/azzamalzeidi/Documents/CODING/Projects/NextJs Projects/Khedmah/public/confirmAnimation.json";
+import animationData from "/Users/azzamalzeidi/Documents/CODING/NextJs/Khedmah/public/confirmAnimation.json";
 import { useState } from "react";
 import { OAuthButtons } from "./oauth";
 import * as z from "zod";
