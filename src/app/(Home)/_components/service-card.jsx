@@ -1,20 +1,45 @@
-export const ServiceCard = ({ title, description, price, creator }) => {
+"use client";
+import { cn } from "@/lib/utils";
+import Link from "next/link";
+
+export const ServiceCard = ({ title, description, price, creator, grid }) => {
   return (
-    <div className="flex w-full flex-col gap-4 rounded-lg border border-black bg-secondary p-2 shadow-md md:flex-row">
-      <section>
-        <div className="h-40 rounded-lg bg-primary-foreground md:w-40 lg:w-52"></div>
+    <div
+      className={cn(
+        "flex gap-2 rounded-xl border bg-card p-3 text-card-foreground shadow",
+        grid ? "flex-col" : "",
+      )}
+    >
+      {/* preview section */}
+      <section className={cn(grid ? "" : "w-1/2 lg:w-1/4")}>
+        <div className="h-40 w-full rounded-lg bg-primary-foreground"></div>
       </section>
-      <section className="flex w-full flex-col justify-between gap-2">
-        <div>
-          <h1 className="text-right text-xl font-bold">{title}</h1>
-          <p className="text-right text-sm text-muted-foreground">
+
+      {/* information section */}
+      <section
+        className={cn(
+          "flex h-full flex-col justify-between",
+          grid ? "" : "w-1/2 lg:w-3/4",
+        )}
+      >
+        {/* title and description */}
+        <section className="flex w-full flex-grow flex-col gap-1">
+          <Link
+            href={"/"}
+            className="truncate text-right font-semibold md:text-lg"
+          >
+            {title}
+          </Link>
+          <p className="line-clamp-2 text-right text-sm text-muted-foreground">
             {description}
           </p>
-        </div>
-        <div className="flex justify-between">
-          <h3 className="text-xl font-bold">{price}$</h3>
-          <h3 className="text-sm text-muted-foreground">{creator}</h3>
-        </div>
+        </section>
+
+        {/* creator and price */}
+        <section className="mt-5 flex justify-between">
+          <p className="text-lg font-bold">{price}$</p>
+          <p className="text-muted-foreground">{creator}</p>
+        </section>
       </section>
     </div>
   );

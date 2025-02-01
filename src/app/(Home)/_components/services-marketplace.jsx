@@ -23,9 +23,6 @@ export const ServicesMarketplace = ({ servicesData }) => {
             className={cn(
               "grid gap-2",
               grid ? "grid-cols-2 lg:grid-cols-3" : "grid-cols-1",
-              grid && servicesData.length > 1
-                ? "grid-cols-2 lg:grid-cols-1"
-                : "grid-cols-1",
             )}
           >
             {servicesData.map((service) => {
@@ -36,6 +33,7 @@ export const ServicesMarketplace = ({ servicesData }) => {
                   description={service.description}
                   price={service.price}
                   creator={service.profiles.full_name}
+                  grid={grid}
                 />
               );
             })}
