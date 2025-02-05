@@ -2,7 +2,14 @@
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 
-export const ServiceCard = ({ title, description, price, creator, grid }) => {
+export const ServiceCard = ({
+  id,
+  title,
+  description,
+  price,
+  creator,
+  grid,
+}) => {
   return (
     <div
       className={cn(
@@ -25,7 +32,7 @@ export const ServiceCard = ({ title, description, price, creator, grid }) => {
         {/* title and description */}
         <section className="flex w-full flex-grow flex-col gap-1">
           <Link
-            href={"/"}
+            href={`/services/${id}`}
             className="truncate text-right font-semibold md:text-lg"
           >
             {title}

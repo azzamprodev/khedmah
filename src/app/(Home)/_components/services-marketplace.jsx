@@ -15,11 +15,6 @@ export const ServicesMarketplace = ({ servicesData }) => {
         </section>
         <section>
           <div
-            // className={cn(
-            //   grid
-            //     ? `grid gap-2 ${servicesData.length > 1 ? "grid-cols-2 lg:grid-cols-3" : "grid-cols-1"}`
-            //     : `grid grid-cols-1 gap-2`,
-            // )}
             className={cn(
               "grid gap-2",
               grid ? "grid-cols-2 lg:grid-cols-3" : "grid-cols-1",
@@ -28,7 +23,8 @@ export const ServicesMarketplace = ({ servicesData }) => {
             {servicesData.map((service) => {
               return (
                 <ServiceCard
-                  key={service.title}
+                  key={service.id}
+                  id={service.id}
                   title={service.title}
                   description={service.description}
                   price={service.price}

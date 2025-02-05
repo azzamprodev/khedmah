@@ -2,9 +2,16 @@ import { createServerClient } from "@supabase/ssr";
 import { NextResponse } from "next/server";
 
 // List of public routes
-const PUBLIC_ROUTES = ["/", "/auth/login", "/auth/confirm", "/auth/callback"];
+const PUBLIC_ROUTES = [
+  "/",
+  "/auth/login",
+  "/auth/confirm",
+  "/auth/callback",
+  "/services",
+];
 // Helper function to check if a route is public
-const isPublicRoute = (path) => PUBLIC_ROUTES.includes(path);
+const isPublicRoute = (path) =>
+  PUBLIC_ROUTES.includes(path) || path.startsWith("/services");
 
 export async function updateSession(request) {
   let supabaseResponse = NextResponse.next({
