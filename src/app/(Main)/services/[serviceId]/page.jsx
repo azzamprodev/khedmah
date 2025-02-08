@@ -15,8 +15,6 @@ export default async function Service({ params }) {
     redirect("/");
   }
 
-  console.log(serviceData);
-
   return (
     <section className="container mx-auto px-4">
       <ServiceInfo serviceData={serviceData} />

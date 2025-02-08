@@ -1,5 +1,5 @@
 "use client";
-import { emailLogin } from "@/app/auth/login/actions";
+import { emailLogin } from "../actions";
 import {
   Card,
   CardContent,

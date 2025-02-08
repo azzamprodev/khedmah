@@ -1,7 +1,7 @@
 "use client";
 import { cn } from "@/lib/utils";
 import { SearchBar } from "./search-bar";
-import { ServiceCard } from "./service-card";
+import { ServiceCardMain } from "./service-card-main";
 import { useState } from "react";
 
 export const ServicesMarketplace = ({ servicesData }) => {
@@ -22,7 +22,7 @@ export const ServicesMarketplace = ({ servicesData }) => {
           >
             {servicesData.map((service) => {
               return (
-                <ServiceCard
+                <ServiceCardMain
                   key={service.id}
                   id={service.id}
                   title={service.title}

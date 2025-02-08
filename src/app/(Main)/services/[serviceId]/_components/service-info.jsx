@@ -4,15 +4,16 @@ import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
-  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Heart, Star } from "lucide-react";
+import { ChevronsRight, Heart, Star } from "lucide-react";
+import Link from "next/link";
 
 export const ServiceInfo = ({ serviceData }) => {
   const {
+    id,
     title,
     description,
     price,
@@ -29,6 +30,15 @@ export const ServiceInfo = ({ serviceData }) => {
         {/* Right section - photo, text & tags, and service description */}
         <section className="flex flex-col lg:w-2/3">
           {/* Hero photo */}
+          <div className="mb-2 flex items-center justify-end">
+            <Link
+              href={"/"}
+              className="flex items-center justify-center gap-1 text-muted-foreground underline-offset-4 hover:underline"
+            >
+              عودة للخدمات
+              <ChevronsRight />
+            </Link>
+          </div>
           <div className="h-80 w-full rounded-lg bg-primary-foreground"></div>
 
           {/* Hero text */}
@@ -64,24 +74,31 @@ export const ServiceInfo = ({ serviceData }) => {
         </section>
 
         {/* Left section - price and creator cards */}
-        <section className="flex flex-col gap-3 lg:w-1/3">
+        <section className="flex flex-col gap-3 lg:mt-8 lg:w-1/3">
           {/* Pricing card */}
           <Card>
             <CardHeader>
               <CardTitle>
-                <div className="flex justify-between">
+                <div className="flex items-center justify-between">
                   <h1 className="text-2xl">{price}$</h1>
-                  <h1 className="text-right text-2xl">السعر</h1>
+                  <div className="flex flex-col gap-1">
+                    <h1 className="text-right text-2xl">السعر</h1>
+                    <p className="text-muted-foreground">
+                      هذا وصف لبطاقة السعر
+                    </p>
+                  </div>
                 </div>
               </CardTitle>
             </CardHeader>
             <CardContent>
               <div className="flex flex-col gap-2">
-                <Button className="w-full">اطلب الخدمة</Button>
-                <Button className="w-full" variant="outline">
+                <Link href={`/checkout/${id}`}>
+                  <Button className="w-full py-6">اطلب الخدمة</Button>
+                </Link>
+                {/* <Button className="w-full" variant="outline">
                   المفضله
                   <Heart />
-                </Button>
+                </Button> */}
               </div>
             </CardContent>
           </Card>
@@ -89,26 +106,16 @@ export const ServiceInfo = ({ serviceData }) => {
           {/* Creator card */}
           <Card>
             <CardHeader>
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-0.5">
-                  <Star className="h-5 w-5 fill-primary text-primary" />
-                  <Star className="h-5 w-5 fill-primary text-primary" />
-                  <Star className="h-5 w-5 fill-primary text-primary" />
-                  <Star className="h-5 w-5 fill-primary text-primary" />
-                  <Star className="h-5 w-5 fill-primary text-primary" />
-                  <span className="ml-1 text-muted-foreground">(124)</span>
+              <div className="flex items-center justify-end gap-2">
+                <div>
+                  <h1 className="text-right">{full_name}</h1>
+                  <p className="text-right text-muted-foreground">
+                    @{username}
+                  </p>
                 </div>
-                <div className="flex items-center justify-end gap-2">
-                  <div>
-                    <h1 className="text-right">{full_name}</h1>
-                    <p className="text-right text-muted-foreground">
-                      @{username}
-                    </p>
-                  </div>
-                  <Avatar>
-                    <AvatarFallback>KH</AvatarFallback>
-                  </Avatar>
-                </div>
+                <Avatar>
+                  <AvatarFallback>KH</AvatarFallback>
+                </Avatar>
               </div>
             </CardHeader>
           </Card>

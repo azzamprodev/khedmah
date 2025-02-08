@@ -21,7 +21,7 @@ import { Loader2 } from "lucide-react";
 import * as z from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { createUsername } from "@/app/auth/complete-userdata/actions";
+import { createUsername } from "../actions";
 import { useRouter } from "next/navigation";
 
 const formSchema = z.object({

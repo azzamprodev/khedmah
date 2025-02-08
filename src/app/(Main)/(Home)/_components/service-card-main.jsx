@@ -2,7 +2,8 @@
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 
-export const ServiceCard = ({
+export const ServiceCardMain = ({
+  // edit so the data is extracted on the component only
   id,
   title,
   description,

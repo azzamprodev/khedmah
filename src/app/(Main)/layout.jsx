@@ -1,8 +1,7 @@
-import "./globals.css";
+import "../globals.css";
 import { IBM_Plex_Sans_Arabic } from "next/font/google";
 import { ThemeProvider } from "@/components/ui/theme-provider";
 import { Navbar } from "@/components/navbar";
-import { Heart } from "lucide-react";
 
 export const metadata = {
   title: "Create Next App",
