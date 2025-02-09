@@ -16,7 +16,7 @@ export async function createTransaction(clientData, serviceId) {
     const { data: client, error: clientError } = await supabase
       .from("clients")
       .insert([clientData])
-      .select()
+      .select("*")
       .single();
 
     if (clientError || !client) {
@@ -38,9 +38,11 @@ export async function createTransaction(clientData, serviceId) {
     status: "pending",
   };
 
-  const { error: transactionError } = await supabase
+  const { data: transaction, error: transactionError } = await supabase
     .from("transactions")
-    .insert([transactionData]);
+    .insert([transactionData])
+    .select("*")
+    .single();
 
   if (transactionError) {
     // Only delete the client if they were newly created
@@ -49,7 +51,7 @@ export async function createTransaction(clientData, serviceId) {
     }
     return {
       success: false,
-      message: "Transaction didn't save to database",
+      message: "Transaction cannot be saved to database",
       error: transactionError,
     };
   }
@@ -57,5 +59,6 @@ export async function createTransaction(clientData, serviceId) {
   return {
     success: true,
     message: "Transaction was saved to database",
+    transactionId: transaction.id,
   };
 }

@@ -22,8 +22,10 @@ import {
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { createTransaction } from "../../actions";
+import { useRouter } from "next/navigation";
 
 export const CheckoutForm = ({ serviceData }) => {
+  const router = useRouter();
   const { id: serviceId } = serviceData;
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -53,9 +55,11 @@ export const CheckoutForm = ({ serviceData }) => {
       const response = await createTransaction(clientData, serviceId);
 
       if (response.success) {
-        console.log(response.message);
+        const transactionId = response.transactionId;
+        router.push(`/checkout/success/${transactionId}`);
       } else {
-        setError(response.message);
+        // console.log(response.error.message)
+        setError("تمت عملية الطلب بالفعل");
       }
     } catch (error) {
       console.log(error);
@@ -119,9 +123,7 @@ export const CheckoutForm = ({ serviceData }) => {
                 </FormItem>
               )}
             ></FormField>
-            <FormMessage>
-              {form.formState.errors.email?.message || error}
-            </FormMessage>
+            <FormMessage className="text-right">{error}</FormMessage>
             <Button type="submit" className="mt-4 w-full">
               {loading ? <Loader2 className="animate-spin" /> : "طلب"}
             </Button>
